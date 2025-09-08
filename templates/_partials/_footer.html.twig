@@ -1,0 +1,6 @@
+<!-- Footer -->
+<footer class="bg-white py-4 shadow-inner">
+    <div class="container mx-auto px-6 text-center text-gray-600">
+        © 2024 ImmoWeb, Tous droits réservés.
+    </div>
+</footer>
