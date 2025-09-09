@@ -2,7 +2,7 @@
 <div class="bg-white shadow-lg rounded-lg overflow-hidden relative">
     <div class="relative">
         <img class="w-full h-56 object-cover object-center" src="{{ listing.img ?? "https://st3.idealista.pt/news/arquivos/styles/fullwidth_xl/public/2023-02/media/image/200912673.jpg" }}" alt="Property">
-        <span class="absolute bottom-0 right-0 px-7 py-1 font-bold bg-slate-200 rounded-tl-lg">{{ listing.transactionType }}</span>
+        <span class="absolute bottom-0 right-0 px-7 py-1 font-bold bg-slate-200 rounded-tl-lg">{{ listing.transactionType.name }}</span>
     </div>
     <div class="p-4">
         <div class="flex justify-between items-center">

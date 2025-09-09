@@ -23,17 +23,19 @@ class Listing
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $transactionType = null;
-
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $img = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $propertyType = null;
+    #[ORM\ManyToOne(inversedBy: 'listings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TransactionType $transactionType = null;
+
+    #[ORM\ManyToOne(inversedBy: 'listings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PropertyType $propertyType = null;
 
     public function getId(): ?int
     {
@@ -76,18 +78,6 @@ class Listing
         return $this;
     }
 
-    public function getTransactionType(): ?string
-    {
-        return $this->transactionType;
-    }
-
-    public function setTransactionType(string $transactionType): static
-    {
-        $this->transactionType = $transactionType;
-
-        return $this;
-    }
-
     public function getCity(): ?string
     {
         return $this->city;
@@ -112,12 +102,25 @@ class Listing
         return $this;
     }
 
-    public function getPropertyType(): ?string
+    public function getTransactionType(): ?TransactionType
+    {
+        return $this->transactionType;
+    }
+
+    public function setTransactionType(?TransactionType $transactionType): static
+    {
+        $this->transactionType = $transactionType;
+
+        return $this;
+    }
+
+    public function getPropertyType(): ?PropertyType
     {
         return $this->propertyType;
     }
 
-    public function setPropertyType(string $propertyType): static {
+    public function setPropertyType(?PropertyType $propertyType): static
+    {
         $this->propertyType = $propertyType;
 
         return $this;

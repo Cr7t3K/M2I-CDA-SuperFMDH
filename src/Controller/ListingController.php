@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Listing;
+use App\Entity\PropertyType;
+use App\Entity\TransactionType;
 use App\Repository\ListingRepository;
+use App\Repository\PropertyTypeRepository;
+use App\Repository\TransactionTypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,15 +45,20 @@ final class ListingController extends AbstractController
     )]
     public function new(
         EntityManagerInterface $entityManager,
+        TransactionTypeRepository $transactionTypeRepository,
+        PropertyTypeRepository $propertyTypeRepository
     ): Response {
+        $propertyType = $propertyTypeRepository->findOneBy([]);
+        $transactionType = $transactionTypeRepository->findOneBy([]);
+
         $listing = new Listing();
         $listing
             ->setTitle('Villa de luxe')
             ->setDescription('Villa de luxe description')
             ->setPrice(233244)
             ->setImg('ezfzef')
-            ->setTransactionType('Rent')
-            ->setPropertyType('House')
+            ->setTransactionType($transactionType)
+            ->setPropertyType($propertyType)
             ->setCity('Dubai')
         ;
 
