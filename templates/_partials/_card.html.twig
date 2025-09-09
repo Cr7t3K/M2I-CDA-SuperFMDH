@@ -1,18 +1,23 @@
 <!-- Card 1 -->
 <div class="bg-white shadow-lg rounded-lg overflow-hidden relative">
     <div class="relative">
-        <img class="w-full h-56 object-cover object-center" src="<?= $property['img'] ?>" alt="Property">
-        <span class="absolute bottom-0 right-0 px-7 py-1 font-bold bg-slate-200 rounded-tl-lg">{{ property['transaction'] }}</span>
+        <img class="w-full h-56 object-cover object-center" src="{{ listing.img ?? "https://st3.idealista.pt/news/arquivos/styles/fullwidth_xl/public/2023-02/media/image/200912673.jpg" }}" alt="Property">
+        <span class="absolute bottom-0 right-0 px-7 py-1 font-bold bg-slate-200 rounded-tl-lg">{{ listing.transactionType }}</span>
     </div>
     <div class="p-4">
         <div class="flex justify-between items-center">
-            <h3 class="text-gray-900 font-bold text-xl">{{ property['title'] }}</h3>
-            <p class="text-gray-900 font-semibold">{{ property['price'] }}</p>
+            <h3 class="text-gray-900 font-bold text-xl">{{ listing.title }}</h3>
+            <p class="text-gray-900 font-semibold">{{ listing.price }}</p>
         </div>
-        <p class="text-gray-600">{{ property['city'] }}, France</p>
-        <p class="text-gray-500 mt-2">{{ property['description'] }}</p>
+        <p class="text-gray-600">{{ listing.city }}, France</p>
+        <p class="text-gray-500 mt-2">{{ listing.description }}</p>
         <div class="flex items-center justify-between mt-3">
-            <button class="px-3 py-2 bg-blue-500 text-white text-xs font-bold uppercase rounded">Contact</button>
+            <a class="px-3 py-2 bg-blue-500 text-white text-xs font-bold uppercase rounded"
+               href="{{ path('listing_show', {'id': listing.id}) }}"
+            >Plus d'info</a>
+            <a class="px-3 py-2 bg-red-500 text-white text-xs font-bold uppercase rounded"
+               href="{{ path('listing_delete', {'id': listing.id}) }}"
+            >Delete</a>
             <div class="absolute top-0 right-0 p-4 flex flex-row-reverse">
 {#                <div class="relative ml-4 menu-container">#}
 {#                    <button class="optionsBtn focus:outline-none">#}

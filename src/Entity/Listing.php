@@ -1,0 +1,125 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\ListingRepository;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: ListingRepository::class)]
+class Listing
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $title = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
+    #[ORM\Column]
+    private ?float $price = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $transactionType = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $city = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $propertyType = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getTransactionType(): ?string
+    {
+        return $this->transactionType;
+    }
+
+    public function setTransactionType(string $transactionType): static
+    {
+        $this->transactionType = $transactionType;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(?string $img): static
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
+    public function getPropertyType(): ?string
+    {
+        return $this->propertyType;
+    }
+
+    public function setPropertyType(string $propertyType): static {
+        $this->propertyType = $propertyType;
+
+        return $this;
+    }
+}

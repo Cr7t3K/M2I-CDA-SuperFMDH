@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListingController!{% endblock %}
+
+{% block body %}
+    <a class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" href="{{ path('listing_show', {'id': 1}) }}">Annonce n°1</a>
+    <a class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" href="{{ path('listing_show', {'id': 20}) }}">Annonce n°20</a>
+    <a class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" href="{{ path('listing_show', {'id': 1986313}) }}">Annonce n°1986313</a>
+{% endblock %}
