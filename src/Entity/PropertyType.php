@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
+use App\Entity\Interface\TimestanpableInterface;
+use App\Entity\Trait\TimestanpableTrait;
 use App\Repository\PropertyTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PropertyTypeRepository::class)]
-class PropertyType
+#[ORM\HasLifecycleCallbacks]
+class PropertyType implements TimestanpableInterface
 {
+    use TimestanpableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

@@ -2,13 +2,19 @@
 
 namespace App\Entity;
 
+use App\Entity\Interface\TimestanpableInterface;
+use App\Entity\Trait\TimestanpableTrait;
 use App\Repository\ListingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
 #[ORM\Entity(repositoryClass: ListingRepository::class)]
-class Listing
+#[HasLifecycleCallbacks]
+class Listing implements TimestanpableInterface
 {
+    use TimestanpableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

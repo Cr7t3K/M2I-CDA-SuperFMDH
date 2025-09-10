@@ -2,20 +2,27 @@
 
 namespace App\Entity;
 
+use App\Entity\Interface\TimestanpableInterface;
+use App\Entity\Trait\TimestanpableTrait;
 use App\Repository\TransactionTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TransactionTypeRepository::class)]
-class TransactionType
+#[ORM\HasLifecycleCallbacks]
+class TransactionType implements TimestanpableInterface
 {
+    use TimestanpableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
     private ?string $name = null;
 
     /**

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section id="transaction-types" class="mt-8">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-3xl font-bold">List of Transaction Types</h1>
+            <a href="{{ path('app_transaction_type_new') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <i class="fas fa-plus mr-2"></i> Add
+            </a>
+        </div>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <table class="min-w-full bg-white">
+                <thead>
+                <tr>
+                    <th class="py-2 px-4 bg-gray-200 text-gray-600 font-bold uppercase text-sm text-left">ID</th>
+                    <th class="py-2 px-4 bg-gray-200 text-gray-600 font-bold uppercase text-sm text-left">Nom</th>
+                    <th class="py-2 px-4 bg-gray-200 text-gray-600 font-bold uppercase text-sm text-left">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for transactionType in transactionTypes %}
+                    <tr class="border-b">
+                        <td class="py-2 px-4 text-left">{{ transactionType.id }}</td>
+                        <td class="py-2 px-4 text-left">{{ transactionType.name }}</td>
+                        <td class="py-2 px-4 text-left flex gap-3">
+                            <a href="{{ path('app_transaction_type_update', {'id': transactionType.id}) }}"
+                               class="text-blue-500 hover:text-blue-700 mr-2">
+                                <i class="fas fa-edit"></i> Update
+                            </a>
+                            <form action="{{ path('app_transaction_type_remove', {'id': transactionType.id}) }}" method="POST">
+                                <input type="hidden" name="token" value="{{ csrf_token('remove-transactionType' ~ transactionType.id ) }}">
+                                <button type="submit" class="text-red-500 hover:text-red-700" onclick="return confirm('Confirm action ?')">
+                                    <i class="fas fa-trash-alt"></i> Remove
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}
