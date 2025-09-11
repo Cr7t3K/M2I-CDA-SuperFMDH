@@ -43,6 +43,10 @@ class Listing implements TimestanpableInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?PropertyType $propertyType = null;
 
+    #[ORM\ManyToOne(inversedBy: 'listings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -128,6 +132,18 @@ class Listing implements TimestanpableInterface
     public function setPropertyType(?PropertyType $propertyType): static
     {
         $this->propertyType = $propertyType;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
