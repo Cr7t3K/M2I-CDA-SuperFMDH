@@ -9,13 +9,21 @@
                 <li><a href="" class="text-gray-600 hover:text-gray-800">Houses</a></li>
                 <li><a href="" class="text-gray-600 hover:text-gray-800">Apartments</a></li>
 
-                <li><a href="" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Login</a></li>
+                {% if not app.user %}
+                    <li><a href="{{ path('app_login') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Login</a></li>
+                {% endif %}
+
+                {% if is_granted("ROLE_ADMIN") %}
                 <li>
                     <a href="" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">
                         <i class="fa-solid fa-plus mr-1"></i>Add
                     </a>
                 </li>
-                <li><a href="" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">Logout</a></li>
+                {% endif %}
+
+                {% if app.user %}
+                    <li><a href="{{ path('app_logout') }}" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">Logout</a></li>
+                {% endif %}
             </ul>
         </nav>
     </div>

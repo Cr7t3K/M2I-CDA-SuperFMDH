@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsCsrfTokenValid;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 #[Route('/transaction-type', name: 'app_transaction_type_')]
 class TransactionTypeController extends AbstractController
 {
@@ -39,6 +40,13 @@ class TransactionTypeController extends AbstractController
             $entityManager->persist($transactionType);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                [
+                    'title' => 'New Transaction Type',
+                    'message' => 'Transaction Type created successfully.',
+                ]
+            );
             return $this->redirectToRoute('app_transaction_type_list');
         }
 
@@ -61,6 +69,13 @@ class TransactionTypeController extends AbstractController
             $entityManager->persist($transactionType);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                [
+                    'title' => 'Transaction Type',
+                    'message' => 'Transaction Type updated successfully.',
+                ]
+            );
             return $this->redirectToRoute('app_transaction_type_list');
         }
 
@@ -83,6 +98,14 @@ class TransactionTypeController extends AbstractController
         {
             $entityManager->remove($transactionType);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                [
+                    'title' => 'Transaction Type',
+                    'message' => 'Transaction Type removed successfully.',
+                ]
+            );
         }
 
         return $this->redirectToRoute('app_transaction_type_list');
